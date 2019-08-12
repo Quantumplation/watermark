@@ -1,3 +1,5 @@
+[![Crates.io](https://img.shields.io/crates/v/watermark.svg)](https://crates.io/crates/watermark)
+
 # Watermark
 
 A simple watermarking set.

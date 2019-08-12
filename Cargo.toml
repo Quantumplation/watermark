@@ -1,6 +1,7 @@
 [package]
 name = "watermark"
 description = "A simple watermarking set for in-order insertions"
+documentation = "https://docs.rs/watermark"
 version = "1.0.0"
 authors = ["Pi Lanningham <pi.lanningham@gmail.com>"]
 edition = "2018"
