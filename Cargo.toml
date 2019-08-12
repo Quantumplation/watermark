@@ -2,7 +2,8 @@
 name = "watermark"
 description = "A simple watermarking set for in-order insertions"
 documentation = "https://docs.rs/watermark"
-version = "1.0.0"
+readme = "README.md"
+version = "1.0.1"
 authors = ["Pi Lanningham <pi.lanningham@gmail.com>"]
 edition = "2018"
 license = "MIT"
