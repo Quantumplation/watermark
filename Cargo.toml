@@ -1,0 +1,23 @@
+[package]
+name = "watermark"
+version = "1.0.0"
+authors = ["Pi Lanningham <pi.lanningham@gmail.com>"]
+edition = "2018"
+license = "MIT"
+homepage = "https://github.com/Quantumplation/watermark"
+repository = "https://github.com/Quantumplation/watermark"
+keywords = ["watermark", "collection"]
+categories = ["data-structures"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num = "0.2"
+
+[dev-dependencies]
+rand = "0.7.0"
+criterion = "0.2"
+
+[[bench]]
+name = "benchmark"
+harness = false
