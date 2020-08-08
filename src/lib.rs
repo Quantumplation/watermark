@@ -130,6 +130,30 @@ impl <T: Integer + CheckedSub + CheckedAdd + FromPrimitive + ToPrimitive> Waterm
     }
 }
 
+impl<T: Integer + ToPrimitive> WatermarkSet<T> {
+    /// Check how many items have been added to the collection
+    /// # Example
+    /// ```
+    /// let mut wm = watermark::WatermarkSet::default();
+    /// for i in 0..=63 {
+    ///     wm.insert(i);
+    /// }
+    /// for i in (64..80).step_by(3) {
+    ///     wm.insert(i);
+    /// }
+    /// assert_eq!(wm.size(), 64 + 6)
+    /// ```
+    pub fn size(&self) -> usize {
+        // Count anything that's submerged in the watermark,
+        let mut size: usize = self.watermark.to_usize().unwrap();
+        // Plus any bits set above the watermark
+        for bucket in &self.recently_added {
+            size += bucket.count_ones() as usize;
+        }
+        return size;
+    }
+}
+
 impl<T: Integer + CheckedSub + ToPrimitive> WatermarkSet<T> {
     /// Check if an element has been added to the collection
     /// # Example
@@ -174,6 +198,25 @@ mod tests {
         collection.insert(1);
         assert!(collection.contains(1));
         assert_eq!(collection.contains(0), false);
+    }
+
+    #[test]
+    fn can_check_size() {
+        let mut collection = WatermarkSet::default();
+        let mut rng = thread_rng();
+        let mut expected_count = 0;
+        let mid = rng.gen_range(10,100);
+        for i in 0..mid {
+            collection.insert(i);
+            expected_count += 1;
+        }
+        let upper = rng.gen_range(mid,500);
+        let step = rng.gen_range(3,20);
+        for i in (mid..upper).step_by(step) {
+            collection.insert(i);
+            expected_count += 1;
+        }
+        assert_eq!(collection.size(), expected_count);
     }
 
     use std::panic;

@@ -39,37 +39,62 @@ is kept very low and membership tests are very very cheap.
 ## Performance
 
 This crate comes with some simple benchmarks that you can run for yourself.
-Here are the results, compared to a hash set, that I got on my laptop:
+Here are the results, compared to a hash set, that I got on my machine:
+
+```
+Specs:
+ - AMD Ryzen 7 3700x 8-Core Processor
+ - 2x16gb DDR4 3200
+```
 
 ```
 WatermarkSet Insert/In Order
-                        time:   [12.528 us 13.191 us 13.863 us]
-                        thrpt:  [72.135 Melem/s 75.807 Melem/s 79.819 Melem/s]
+                        time:   [7.6194 us 7.8101 us 7.9793 us]
+                        thrpt:  [125.32 Melem/s 128.04 Melem/s 131.24 Melem/s]
 
-HashSet Insert/In Order time:   [52.123 us 52.573 us 53.071 us]
-                        thrpt:  [18.843 Melem/s 19.021 Melem/s 19.186 Melem/s]
+HashSet Insert/In Order time:   [40.319 us 40.340 us 40.372 us]
+                        thrpt:  [24.770 Melem/s 24.789 Melem/s 24.802 Melem/s]
+Found 8 outliers among 100 measurements (8.00%)
+  1 (1.00%) low severe
+  2 (2.00%) low mild
+  3 (3.00%) high mild
+  2 (2.00%) high severe
 
 WatermarkSet Insert/Out of Order
-                        time:   [20.463 us 21.415 us 22.209 us]
-                        thrpt:  [45.027 Melem/s 46.696 Melem/s 48.870 Melem/s]
+                        time:   [9.1897 us 9.4983 us 9.7602 us]
+                        thrpt:  [102.46 Melem/s 105.28 Melem/s 108.82 Melem/s]
 
 HashSet Insert/Out of Order
-                        time:   [35.186 us 35.563 us 36.051 us]
-                        thrpt:  [27.738 Melem/s 28.119 Melem/s 28.420 Melem/s]
+                        time:   [26.327 us 26.342 us 26.355 us]
+                        thrpt:  [37.943 Melem/s 37.962 Melem/s 37.983 Melem/s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
 
 WatermarkSet Contains/Aligned
-                        time:   [482.96 ns 492.02 ns 502.25 ns]
-                        thrpt:  [1.2743 Gelem/s 1.3008 Gelem/s 1.3252 Gelem/s]
+                        time:   [242.04 ns 242.25 ns 242.47 ns]
+                        thrpt:  [2.6396 Gelem/s 2.6419 Gelem/s 2.6442 Gelem/s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high severe
 
 HashSet Contains/Aligned
-                        time:   [11.687 us 11.943 us 12.255 us]
-                        thrpt:  [52.223 Melem/s 53.589 Melem/s 54.761 Melem/s]
+                        time:   [7.6920 us 7.7382 us 7.8144 us]
+                        thrpt:  [81.900 Melem/s 82.706 Melem/s 83.204 Melem/s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high severe
 
 WatermarkSet Contains/Unaligned
-                        time:   [621.99 ns 674.32 ns 726.55 ns]
-                        thrpt:  [880.87 Melem/s 949.11 Melem/s 1.0290 Gelem/s]
+                        time:   [290.21 ns 290.39 ns 290.56 ns]
+                        thrpt:  [2.2026 Gelem/s 2.2039 Gelem/s 2.2053 Gelem/s]
+Found 4 outliers among 100 measurements (4.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+  1 (1.00%) high severe
 
 HashSet Contains/Unaligned
-                        time:   [13.132 us 13.431 us 13.801 us]
-                        thrpt:  [46.373 Melem/s 47.651 Melem/s 48.737 Melem/s]
+                        time:   [7.9000 us 7.9021 us 7.9043 us]
+                        thrpt:  [80.969 Melem/s 80.991 Melem/s 81.012 Melem/s]
+Found 5 outliers among 100 measurements (5.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
 ```
